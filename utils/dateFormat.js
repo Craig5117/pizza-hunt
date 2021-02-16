@@ -80,8 +80,17 @@ module.exports = (
   if (hour === 0) {
     hour = 12;
   }
+  else if (hour > 12) {
+    hour = hour - 12;
+  }
 
-  const minutes = dateObj.getMinutes();
+  let minutes = dateObj.getMinutes();
+  if (minutes === 0) {
+    minutes = "00"
+  }
+  else if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
 
   // set `am` or `pm`
   let periodOfDay;
