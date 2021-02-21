@@ -27,12 +27,12 @@ const commentController = {
             { $push: { replies: body } },
             { new: true, runValidators: true }
         )
-            .then(dbPizzaData => {
-                if (!dbPizzaData) {
-                    res.status(404).json({ message: 'No pizza found with this id!' });
+            .then(dbCommentData => {
+                if (!dbCommentData) {
+                    res.status(404).json({ message: 'No comment found with this id!' });
                     return;
                 }
-                res.json(dbPizzaData);
+                res.json(dbCommentData);
             })
             .catch(err => res.json(err));
     },
@@ -65,7 +65,7 @@ const commentController = {
       { $pull: { replies: { replyId: params.replyId } } },
       { new: true }
     )
-      .then(dbPizzaData => res.json(dbPizzaData))
+      .then(dbCommentData => res.json(dbCommentData))
       .catch(err => res.json(err));
   }
 }
